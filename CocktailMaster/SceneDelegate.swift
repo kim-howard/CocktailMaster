@@ -15,14 +15,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     lazy var initialContainer: Container = {
         let container = Container()
         
-        container.register(MainViewModeling.self) { (r, text: String) in
-            print(text)
-            return MainViewModel(text)
+        container.register(MainViewModeling.self) { _ in
+            return MainViewModel()
         }
         
         container.storyboardInitCompleted(MainViewController.self) { (r, c) in
-            print("hear")
-            c.viewModel = r.resolve(MainViewModeling.self, argument: "hello world")
+            c.viewModel = r.resolve(MainViewModeling.self)
         }
         
         return container
@@ -33,7 +31,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        window?.rootViewController = SwinjectStoryboard.create(name: "Main", bundle: nil, container: initialContainer).instantiateViewController(withIdentifier: "MainViewController")
+        let mainViewController = SwinjectStoryboard.create(name: "Main", bundle: nil, container: initialContainer).instantiateViewController(withIdentifier: "MainViewController")
+        let navigationController = UINavigationController(rootViewController: mainViewController)
+        navigationController.isNavigationBarHidden = true
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         
         guard let _ = (scene as? UIWindowScene) else { return }
