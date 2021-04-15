@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+protocol DetailViewModeling {
+    
+}
+
+class DetailViewModel: DetailViewModeling {
+    
+}

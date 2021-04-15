@@ -5,4 +5,9 @@
 //  Created by Hyeontae on 2021/04/13.
 //
 
-import Foundation
+import UIKit
+
+class DetailViewController: UIViewController {
+    var viewModel: DetailViewModeling!
+    
+}
