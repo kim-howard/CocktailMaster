@@ -16,7 +16,7 @@
 		FEB1B76126256496005FDAE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEB1B76026256496005FDAE5 /* Assets.xcassets */; };
 		FEB1B76426256496005FDAE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEB1B76226256496005FDAE5 /* LaunchScreen.storyboard */; };
 		FEB1B770262571F0005FDAE5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB1B76F262571F0005FDAE5 /* MainViewModel.swift */; };
-		FEB1B77426257229005FDAE5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB1B77326257229005FDAE5 /* DetailViewController.swift */; };
+		FEB1B77426257229005FDAE5 /* CocktailDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB1B77326257229005FDAE5 /* CocktailDetailViewController.swift */; };
 		FEB1B77726257231005FDAE5 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB1B77626257230005FDAE5 /* DetailViewModel.swift */; };
 		FEB1B78526257574005FDAE5 /* CocktailTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB1B78426257574005FDAE5 /* CocktailTarget.swift */; };
 		FEB1B7882625757B005FDAE5 /* CocktailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB1B7872625757B005FDAE5 /* CocktailProvider.swift */; };
@@ -53,7 +53,7 @@
 		FEB1B76326256496005FDAE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FEB1B76526256496005FDAE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FEB1B76F262571F0005FDAE5 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		FEB1B77326257229005FDAE5 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		FEB1B77326257229005FDAE5 /* CocktailDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailDetailViewController.swift; sourceTree = "<group>"; };
 		FEB1B77626257230005FDAE5 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		FEB1B78426257574005FDAE5 /* CocktailTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailTarget.swift; sourceTree = "<group>"; };
 		FEB1B7872625757B005FDAE5 /* CocktailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailProvider.swift; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 				FEB1B75D26256494005FDAE5 /* Main.storyboard */,
 				FEB1B75B26256494005FDAE5 /* MainViewController.swift */,
 				FEB1B7CB2627E1AD005FDAE5 /* CocktailNameListViewController.swift */,
-				FEB1B77326257229005FDAE5 /* DetailViewController.swift */,
+				FEB1B77326257229005FDAE5 /* CocktailDetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -373,7 +373,7 @@
 				FEB1B7D42627E24E005FDAE5 /* BaseViewModel.swift in Sources */,
 				FEB1B7C42627DCC5005FDAE5 /* CocktailInfoEntity.swift in Sources */,
 				FEB1B7D02627E228005FDAE5 /* CocktailNameListViewModel.swift in Sources */,
-				FEB1B77426257229005FDAE5 /* DetailViewController.swift in Sources */,
+				FEB1B77426257229005FDAE5 /* CocktailDetailViewController.swift in Sources */,
 				FEB1B75A26256494005FDAE5 /* SceneDelegate.swift in Sources */,
 				FEB1B7882625757B005FDAE5 /* CocktailProvider.swift in Sources */,
 				FEB1B770262571F0005FDAE5 /* MainViewModel.swift in Sources */,

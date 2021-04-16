@@ -185,10 +185,10 @@
             </objects>
             <point key="canvasLocation" x="1971.0144927536232" y="137.94642857142856"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Cocktail Detail View Controller-->
         <scene sceneID="qo6-T2-pE7">
             <objects>
-                <viewController storyboardIdentifier="DetailViewController" id="CYc-gA-i0h" customClass="DetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="CYc-gA-i0h" customClass="CocktailDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fs4-OO-IZI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

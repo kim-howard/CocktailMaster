@@ -7,10 +7,10 @@
 
 import Foundation
 
-protocol DetailViewModeling {
+protocol CocktailDetailViewModeling {
     
 }
 
-class DetailViewModel: DetailViewModeling {
+class DetailViewModel: CocktailDetailViewModeling {
     
 }
