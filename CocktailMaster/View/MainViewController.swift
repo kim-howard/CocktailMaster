@@ -51,6 +51,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var alphabetLabel: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectionStyle = .none
+    }
+    
     func setAlphabet(_ text: String) {
         alphabetLabel.text = text
     }

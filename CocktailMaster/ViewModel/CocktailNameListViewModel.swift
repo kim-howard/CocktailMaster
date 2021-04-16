@@ -6,26 +6,36 @@
 //
 
 import Foundation
+import Swinject
 import RxRelay
 
 protocol CocktailNameListViewModeling: BaseViewModeling {
     var startedAlphabet: String { get }
     var cocktailListRelay: BehaviorRelay<[CocktailInfoEntity]> { get }
+    var cocktailDetailViewControllerRelay: PublishRelay<DetailViewController> { get }
     
+    func targetCocktail(at indexPath: IndexPath) -> CocktailInfoEntity?
+    func didTapCocktailCell(at indexPath: IndexPath)
     func getCocktailList()
 }
 
 final class CocktailNameListViewModel: BaseViewModel, CocktailNameListViewModeling {
     let startedAlphabet: String
-    
     let cocktailListRelay = BehaviorRelay<[CocktailInfoEntity]>(value: [])
+    let cocktailDetailViewControllerRelay = PublishRelay<DetailViewController>()
     
     let cocktailProvider = CocktailProvider()
+    let container = Container()
     
     init(_ startedAlphabet: String) {
         self.startedAlphabet = startedAlphabet
         super.init()
+        setContainer()
         getCocktailList()
+    }
+    
+    private func setContainer() {
+        
     }
     
     func getCocktailList() {
@@ -36,5 +46,15 @@ final class CocktailNameListViewModel: BaseViewModel, CocktailNameListViewModeli
                 print(err)
             }
             .disposed(by: bag)
+    }
+    
+    func targetCocktail(at indexPath: IndexPath) -> CocktailInfoEntity? {
+        let cocktailList = cocktailListRelay.value
+        guard indexPath.row < cocktailList.count else { return nil }
+        return cocktailList[indexPath.row]
+    }
+    
+    func didTapCocktailCell(at indexPath: IndexPath) {
+        print("tap \(indexPath.row)")
     }
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import Swinject
+import Kingfisher
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

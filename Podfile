@@ -10,6 +10,7 @@ target 'CocktailMaster' do
   pod 'SwinjectStoryboard'
   pod 'SwinjectAutoregistration'
   pod 'Moya/RxSwift', '~> 14.0'
+  pod 'Kingfisher', '~> 6.0'
   
   target 'CocktailAPITests' do
     inherit! :search_paths

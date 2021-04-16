@@ -45,8 +45,7 @@ final class MainViewModel: BaseViewModel, MainViewModeling {
         .inObjectScope(.weak)
         
         container.storyboardInitCompleted(CocktailNameListViewController.self) { (r, c) in
-            print("hear2")
-            c.viewModel = r.resolve(CocktailNameListViewModeling.self, argument: "C")
+            c.viewModel = r.resolve(CocktailNameListViewModeling.self, argument: "")
         }
     }
     
