@@ -8,15 +8,16 @@
 import Foundation
 import Swinject
 import RxRelay
+import SwinjectStoryboard
 
 protocol CocktailNameListViewModeling: BaseViewModeling {
     var startedAlphabet: String { get }
     var cocktailListRelay: BehaviorRelay<[CocktailInfoEntity]> { get }
     var cocktailDetailViewControllerRelay: PublishRelay<CocktailDetailViewController> { get }
     
+    func getCocktailList()
     func targetCocktail(at indexPath: IndexPath) -> CocktailInfoEntity?
     func didTapCocktailCell(at indexPath: IndexPath)
-    func getCocktailList()
 }
 
 final class CocktailNameListViewModel: BaseViewModel, CocktailNameListViewModeling {
@@ -35,7 +36,11 @@ final class CocktailNameListViewModel: BaseViewModel, CocktailNameListViewModeli
     }
     
     private func setContainer() {
+        container.register(CocktailDetailViewModeling.self) { (_, id: String) in
+            return CocktailDetailViewModel(id)
+        }
         
+        container.storyboardInitCompleted(CocktailDetailViewController.self) { (_, _) in }
     }
     
     func getCocktailList() {
@@ -55,6 +60,12 @@ final class CocktailNameListViewModel: BaseViewModel, CocktailNameListViewModeli
     }
     
     func didTapCocktailCell(at indexPath: IndexPath) {
-        print("tap \(indexPath.row)")
+        guard let selectedCocktail = targetCocktail(at: indexPath) else { return }
+        let viewModel = container.resolve(CocktailDetailViewModeling.self, argument: selectedCocktail.idDrink)
+        guard let viewController = SwinjectStoryboard.create(name: "Main", bundle: nil, container: container).instantiateViewController(withIdentifier: "CocktailDetailViewController") as? CocktailDetailViewController else {
+            return
+        }
+        viewController.viewModel = viewModel
+        cocktailDetailViewControllerRelay.accept(viewController)
     }
 }

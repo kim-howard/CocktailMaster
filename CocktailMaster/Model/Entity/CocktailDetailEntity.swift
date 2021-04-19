@@ -8,7 +8,7 @@
 import Foundation
 
 struct CocktailDetailResponse: Decodable {
-    let drinks: [CocktailDetailEntity]    
+    let drinks: [CocktailDetailEntity]
 }
 
 struct CocktailDetailEntity: Decodable {
@@ -28,7 +28,7 @@ struct CocktailDetailInfo: Decodable {
     let strAlcoholic: String?
     let strGlass: String?
     let strInstructions: String?
-    let strImageSource: String?
+    let strDrinkThumb: String?
 }
 
 struct IngredientList: Decodable {

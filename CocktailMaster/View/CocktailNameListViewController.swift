@@ -38,6 +38,12 @@ class CocktailNameListViewController: UIViewController {
                 self?.mainTableView.reloadData()
             })
             .disposed(by: viewModel.bag)
+        
+        viewModel.cocktailDetailViewControllerRelay
+            .subscribe(onNext: { [weak self] viewController in
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            })
+            .disposed(by: viewModel.bag)
     }
 }
 

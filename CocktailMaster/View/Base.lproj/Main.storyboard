@@ -183,17 +183,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WQg-bh-Q1Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1971.0144927536232" y="137.94642857142856"/>
+            <point key="canvasLocation" x="1916" y="138"/>
         </scene>
         <!--Cocktail Detail View Controller-->
         <scene sceneID="qo6-T2-pE7">
             <objects>
-                <viewController storyboardIdentifier="DetailViewController" id="CYc-gA-i0h" customClass="CocktailDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CocktailDetailViewController" id="CYc-gA-i0h" customClass="CocktailDetailViewController" customModule="CocktailMaster" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fs4-OO-IZI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QJI-8y-tCu">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QJI-8y-tCu">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="ZV2-ek-CWR"/>
@@ -286,10 +286,14 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="ingredientLabel" destination="7rw-PT-eiW" id="u98-kR-BVK"/>
-                                            <outlet property="volumeLabel" destination="Evm-X8-cAF" id="mWr-qo-ePa"/>
+                                            <outlet property="measureLabel" destination="Evm-X8-cAF" id="mWr-qo-ePa"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="CYc-gA-i0h" id="iur-Ol-tK6"/>
+                                    <outlet property="delegate" destination="CYc-gA-i0h" id="M2A-IX-Sj7"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oND-s9-DoY">
                                 <rect key="frame" x="0.0" y="44" width="50" height="50"/>
@@ -332,16 +336,16 @@
                         <outlet property="alcoholicLabel" destination="xeE-3w-75B" id="1kV-D5-3yK"/>
                         <outlet property="backButton" destination="oND-s9-DoY" id="ZFW-Jt-TeN"/>
                         <outlet property="categoryLabel" destination="V8D-80-G89" id="6re-nN-JNb"/>
-                        <outlet property="descriptionTextView" destination="xK7-jn-Sx7" id="6Mb-sZ-6U8"/>
                         <outlet property="glassLabel" destination="qfr-Hz-cph" id="gyB-6s-9CJ"/>
                         <outlet property="ingredientTableView" destination="qen-tJ-dUL" id="TDh-vy-GSJ"/>
+                        <outlet property="instructionTextView" destination="xK7-jn-Sx7" id="6Mb-sZ-6U8"/>
                         <outlet property="mainImageView" destination="QJI-8y-tCu" id="hdV-nf-umg"/>
                         <outlet property="nameLabel" destination="l8L-bX-Y0o" id="XPH-Jb-zH1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rl8-SZ-3lo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2928.985507246377" y="137.94642857142856"/>
+            <point key="canvasLocation" x="2838" y="138"/>
         </scene>
     </scenes>
     <resources>
