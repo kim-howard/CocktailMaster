@@ -42,10 +42,9 @@ final class MainViewModel: BaseViewModel, MainViewModeling {
         container.register(CocktailNameListViewModeling.self) { (_, alphabet: String) in
             return CocktailNameListViewModel(alphabet)
         }
-        .inObjectScope(.weak)
         
         container.storyboardInitCompleted(CocktailNameListViewController.self) { (r, c) in
-            c.viewModel = r.resolve(CocktailNameListViewModeling.self, argument: "")
+            // do somthing if u want ...
         }
     }
     
@@ -54,9 +53,9 @@ final class MainViewModel: BaseViewModel, MainViewModeling {
     }
     
     func didTapAlphabetCell(at indexPath: IndexPath) {
-        // 이럴거면 그냥 property injection 쓰는게 낫다
         let viewModel = container.resolve(CocktailNameListViewModeling.self, argument: targetAlphabet(at: indexPath))
         guard let viewController = SwinjectStoryboard.create(name: "Main", bundle: nil, container: container).instantiateViewController(withIdentifier: "CocktailNameListViewController") as? CocktailNameListViewController else { return }
+        viewController.viewModel = viewModel
         
         cocktailNameListViewControllerRelay.accept(viewController)
     }

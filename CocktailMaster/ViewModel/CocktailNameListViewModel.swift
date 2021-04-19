@@ -40,7 +40,7 @@ final class CocktailNameListViewModel: BaseViewModel, CocktailNameListViewModeli
             return CocktailDetailViewModel(id)
         }
         
-        container.storyboardInitCompleted(CocktailDetailViewController.self) { (_, _) in }
+//        container.storyboardInitCompleted(CocktailDetailViewController.self) { (_, _) in }
     }
     
     func getCocktailList() {
@@ -62,9 +62,7 @@ final class CocktailNameListViewModel: BaseViewModel, CocktailNameListViewModeli
     func didTapCocktailCell(at indexPath: IndexPath) {
         guard let selectedCocktail = targetCocktail(at: indexPath) else { return }
         let viewModel = container.resolve(CocktailDetailViewModeling.self, argument: selectedCocktail.idDrink)
-        guard let viewController = SwinjectStoryboard.create(name: "Main", bundle: nil, container: container).instantiateViewController(withIdentifier: "CocktailDetailViewController") as? CocktailDetailViewController else {
-            return
-        }
+        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CocktailDetailViewController") as? CocktailDetailViewController else { return }
         viewController.viewModel = viewModel
         cocktailDetailViewControllerRelay.accept(viewController)
     }
