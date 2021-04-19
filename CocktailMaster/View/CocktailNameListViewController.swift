@@ -48,6 +48,10 @@ class CocktailNameListViewController: UIViewController {
 }
 
 extension CocktailNameListViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 76
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.cocktailListRelay.value.count
     }

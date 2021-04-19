@@ -21,8 +21,13 @@ final class CocktailDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        attribute()
         binding()
         viewModel.getDetail()
+    }
+    
+    private func attribute() {
+        ingredientTableView.tableFooterView = UIView()
     }
     
     private func binding() {
@@ -53,12 +58,18 @@ final class CocktailDetailViewController: UIViewController {
         nameLabel.text = cocktailDetailEntity.detailInfo.strDrink
         categoryLabel.text = cocktailDetailEntity.detailInfo.strCategory
         alcoholicLabel.text = cocktailDetailEntity.detailInfo.strAlcoholic
-        glassLabel.text = cocktailDetailEntity.detailInfo.strGlass
+        if let glass = cocktailDetailEntity.detailInfo.strGlass {
+            glassLabel.text = "Serve with \(glass)"
+        }
         instructionTextView.text = cocktailDetailEntity.detailInfo.strInstructions
     }
 }
 
 extension CocktailDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.ingredientListRelay.value.count
     }
@@ -79,6 +90,11 @@ extension CocktailDetailViewController: UITableViewDelegate, UITableViewDataSour
 final class IngredientTableViewCell: UITableViewCell {
     @IBOutlet weak var ingredientLabel: UILabel!
     @IBOutlet weak var measureLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectionStyle = .none
+    }
     
     func setUI(with ingredientEntity: IngredientEntity) {
         ingredientLabel.text = ingredientEntity.ingredient
