@@ -13,4 +13,9 @@ final class CocktailProvider: MoyaProvider<CocktailTarget> {
         rx.request(.list(withFirstLetter: firstLetter))
             .map(CocktailInfoList.self)
     }
+    
+    func cocktailDetail(_ id: String) -> Single<CocktailDetailResponse> {
+        rx.request(.detail(id: id))
+            .map(CocktailDetailResponse.self)
+    }
 }

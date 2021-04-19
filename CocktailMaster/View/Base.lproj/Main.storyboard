@@ -255,7 +255,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="57" id="sQC-ok-WFb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientTableViewCell" rowHeight="57" id="sQC-ok-WFb" customClass="IngredientTableViewCell" customModule="CocktailMaster" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="382" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sQC-ok-WFb" id="p0h-me-vUu">
@@ -284,9 +284,23 @@
                                                 <constraint firstAttribute="trailing" secondItem="Evm-X8-cAF" secondAttribute="trailing" id="vGU-tk-mxp"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ingredientLabel" destination="7rw-PT-eiW" id="u98-kR-BVK"/>
+                                            <outlet property="volumeLabel" destination="Evm-X8-cAF" id="mWr-qo-ePa"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oND-s9-DoY">
+                                <rect key="frame" x="0.0" y="44" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="HPX-bp-pbi"/>
+                                    <constraint firstAttribute="width" constant="50" id="lci-tp-pfE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="chevron.left" catalog="system"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mwf-t3-YT7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -303,6 +317,7 @@
                             <constraint firstItem="qen-tJ-dUL" firstAttribute="leading" secondItem="mwf-t3-YT7" secondAttribute="leading" constant="16" id="Ppc-Bk-OEs"/>
                             <constraint firstItem="mwf-t3-YT7" firstAttribute="bottom" secondItem="qen-tJ-dUL" secondAttribute="bottom" id="Rta-1k-qQm"/>
                             <constraint firstItem="l8L-bX-Y0o" firstAttribute="leading" secondItem="mwf-t3-YT7" secondAttribute="leading" constant="16" id="S99-sh-lvs"/>
+                            <constraint firstItem="oND-s9-DoY" firstAttribute="top" secondItem="mwf-t3-YT7" secondAttribute="top" id="StH-Ss-YZN"/>
                             <constraint firstItem="mwf-t3-YT7" firstAttribute="trailing" secondItem="qen-tJ-dUL" secondAttribute="trailing" constant="16" id="Uuh-IF-dbI"/>
                             <constraint firstItem="mwf-t3-YT7" firstAttribute="trailing" secondItem="xeE-3w-75B" secondAttribute="trailing" constant="16" id="VyE-dE-C4X"/>
                             <constraint firstItem="QJI-8y-tCu" firstAttribute="top" secondItem="fs4-OO-IZI" secondAttribute="top" id="W2p-oX-r6o"/>
@@ -310,8 +325,19 @@
                             <constraint firstItem="mwf-t3-YT7" firstAttribute="trailing" secondItem="QJI-8y-tCu" secondAttribute="trailing" id="bcf-Hh-09b"/>
                             <constraint firstItem="xK7-jn-Sx7" firstAttribute="leading" secondItem="mwf-t3-YT7" secondAttribute="leading" constant="16" id="fGL-Cq-UbX"/>
                             <constraint firstItem="xK7-jn-Sx7" firstAttribute="top" secondItem="qfr-Hz-cph" secondAttribute="bottom" constant="20" id="mlj-fr-FAG"/>
+                            <constraint firstItem="oND-s9-DoY" firstAttribute="leading" secondItem="mwf-t3-YT7" secondAttribute="leading" id="ohV-F5-sdw"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="alcoholicLabel" destination="xeE-3w-75B" id="1kV-D5-3yK"/>
+                        <outlet property="backButton" destination="oND-s9-DoY" id="ZFW-Jt-TeN"/>
+                        <outlet property="categoryLabel" destination="V8D-80-G89" id="6re-nN-JNb"/>
+                        <outlet property="descriptionTextView" destination="xK7-jn-Sx7" id="6Mb-sZ-6U8"/>
+                        <outlet property="glassLabel" destination="qfr-Hz-cph" id="gyB-6s-9CJ"/>
+                        <outlet property="ingredientTableView" destination="qen-tJ-dUL" id="TDh-vy-GSJ"/>
+                        <outlet property="mainImageView" destination="QJI-8y-tCu" id="hdV-nf-umg"/>
+                        <outlet property="nameLabel" destination="l8L-bX-Y0o" id="XPH-Jb-zH1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rl8-SZ-3lo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -320,6 +346,7 @@
     </scenes>
     <resources>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

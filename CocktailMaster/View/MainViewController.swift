@@ -14,10 +14,10 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModelBinding()
+        binding()
     }
     
-    private func viewModelBinding() {
+    private func binding() {
         viewModel.alphabetListRelay
             .subscribe(onNext: { [weak self] _ in
                 self?.mainTableView.reloadData()

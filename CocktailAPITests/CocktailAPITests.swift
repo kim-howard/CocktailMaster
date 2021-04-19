@@ -22,9 +22,29 @@ class CocktailAPITests: XCTestCase {
             })
             .subscribe { list in
                 print("good")
-                print(list)
+//                print(list)
             } onError: { err in
-                print("error")
+                print("error testList")
+                XCTFail()
+                print(err)
+            }
+            
+        wait(for: [expectation], timeout: .init(3))
+    }
+    
+    func testDetail() {
+        let expectation = XCTestExpectation()
+        
+        cocktailProvider.cocktailDetail("11007")
+            .do(onDispose: {
+                expectation.fulfill()
+            })
+            .subscribe { detail in
+                print("good")
+                print(detail)
+            } onError: { err in
+                print("error testDetail")
+                XCTFail()
                 print(err)
             }
             

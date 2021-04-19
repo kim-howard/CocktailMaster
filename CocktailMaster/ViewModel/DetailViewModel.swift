@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import RxSwift
 
-protocol CocktailDetailViewModeling {
+protocol CocktailDetailViewModeling: BaseViewModeling {
     
 }
 
 class DetailViewModel: CocktailDetailViewModeling {
-    
+    let bag = DisposeBag()
 }
