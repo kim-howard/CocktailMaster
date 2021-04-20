@@ -8,7 +8,7 @@
 import Foundation
 import Swinject
 import RxRelay
-import SwinjectStoryboard
+import SwinjectAutoregistration
 
 protocol CocktailNameListViewModeling: BaseViewModeling {
     var startedAlphabet: String { get }
@@ -26,21 +26,12 @@ final class CocktailNameListViewModel: BaseViewModel, CocktailNameListViewModeli
     let cocktailDetailViewControllerRelay = PublishRelay<CocktailDetailViewController>()
     
     let cocktailProvider = CocktailProvider()
-    let container = Container()
+    let assembler = Assembler([MainAssembly(), CocktailListAssembly()])
     
     init(_ startedAlphabet: String) {
         self.startedAlphabet = startedAlphabet
         super.init()
-        setContainer()
         getCocktailList()
-    }
-    
-    private func setContainer() {
-        container.register(CocktailDetailViewModeling.self) { (_, id: String) in
-            return CocktailDetailViewModel(id)
-        }
-        
-//        container.storyboardInitCompleted(CocktailDetailViewController.self) { (_, _) in }
     }
     
     func getCocktailList() {
@@ -61,9 +52,27 @@ final class CocktailNameListViewModel: BaseViewModel, CocktailNameListViewModeli
     
     func didTapCocktailCell(at indexPath: IndexPath) {
         guard let selectedCocktail = targetCocktail(at: indexPath) else { return }
-        let viewModel = container.resolve(CocktailDetailViewModeling.self, argument: selectedCocktail.idDrink)
+        
+        let viewModel = assembler.resolver ~> (CocktailDetailViewModeling.self, argument: selectedCocktail.idDrink)
         guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CocktailDetailViewController") as? CocktailDetailViewController else { return }
         viewController.viewModel = viewModel
         cocktailDetailViewControllerRelay.accept(viewController)
+    }
+}
+
+class CocktailListAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(CocktailDetailViewModeling.self) { (_, id: String) in
+            
+            let test = container.resolve(CocktailNameListViewModeling.self, argument: "z")
+            if let test = test as? CocktailNameListViewModel {
+                print("Integration")
+                print(test.startedAlphabet)
+            } else {
+                print("not Integrated")
+            }
+            
+            return CocktailDetailViewModel(id)
+        }
     }
 }

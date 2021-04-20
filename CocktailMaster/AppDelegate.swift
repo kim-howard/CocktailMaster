@@ -8,6 +8,7 @@
 import UIKit
 import Swinject
 import Kingfisher
+import SwinjectAutoregistration
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

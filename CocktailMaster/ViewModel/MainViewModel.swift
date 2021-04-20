@@ -8,7 +8,6 @@
 import RxRelay
 import RxSwift
 import Swinject
-import SwinjectStoryboard
 
 protocol MainViewModeling: BaseViewModeling {
     var alphabetListRelay: BehaviorRelay<[String]> { get }
@@ -20,13 +19,11 @@ protocol MainViewModeling: BaseViewModeling {
 final class MainViewModel: BaseViewModel, MainViewModeling {
     let alphabetListRelay = BehaviorRelay<[String]>(value: [])
     let cocktailNameListViewControllerRelay = PublishRelay<CocktailNameListViewController>()
-    
-    let container = Container()
+    let assembler: Assembler = Assembler([MainAssembly()])
     
     override init() {
         super.init()
         setAlphabetList()
-        setContainer()
     }
     
     private func setAlphabetList() {
@@ -38,25 +35,23 @@ final class MainViewModel: BaseViewModel, MainViewModeling {
         alphabetListRelay.accept(list)
     }
     
-    private func setContainer() {
-        container.register(CocktailNameListViewModeling.self) { (_, alphabet: String) in
-            return CocktailNameListViewModel(alphabet)
-        }
-        
-        container.storyboardInitCompleted(CocktailNameListViewController.self) { (r, c) in
-            // do somthing if u want ...
-        }
-    }
-    
     func targetAlphabet(at indexPath: IndexPath) -> String {
         return alphabetListRelay.value[indexPath.row]
     }
     
     func didTapAlphabetCell(at indexPath: IndexPath) {
-        let viewModel = container.resolve(CocktailNameListViewModeling.self, argument: targetAlphabet(at: indexPath))
-        guard let viewController = SwinjectStoryboard.create(name: "Main", bundle: nil, container: container).instantiateViewController(withIdentifier: "CocktailNameListViewController") as? CocktailNameListViewController else { return }
+        let viewModel = assembler.resolver.resolve(CocktailNameListViewModeling.self, argument: targetAlphabet(at: indexPath))
+        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CocktailNameListViewController") as? CocktailNameListViewController else { return }
         viewController.viewModel = viewModel
         
         cocktailNameListViewControllerRelay.accept(viewController)
+    }
+}
+
+class MainAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(CocktailNameListViewModeling.self) { (_, alphabet: String) in
+            return CocktailNameListViewModel(alphabet)
+        }
     }
 }

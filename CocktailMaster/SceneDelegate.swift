@@ -12,26 +12,14 @@ import SwinjectStoryboard
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    lazy var initialContainer: Container = {
-        let container = Container()
-        
-        container.register(MainViewModeling.self) { _ in
-            return MainViewModel()
-        }
-        
-        container.storyboardInitCompleted(MainViewController.self) { (r, c) in
-            c.viewModel = r.resolve(MainViewModeling.self)
-        }
-        
-        return container
-    }()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        let initialAssembler = Assembler([InitialAssembly()])
         
-        let mainViewController = SwinjectStoryboard.create(name: "Main", bundle: nil, container: initialContainer).instantiateViewController(withIdentifier: "MainViewController")
+        let mainViewController = SwinjectStoryboard.create(name: "Main", bundle: nil, container: initialAssembler.resolver).instantiateViewController(withIdentifier: "MainViewController")
         let navigationController = UINavigationController(rootViewController: mainViewController)
         navigationController.isNavigationBarHidden = true
         window?.rootViewController = navigationController
@@ -71,3 +59,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+class InitialAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(MainViewModeling.self) { _ in
+            return MainViewModel()
+        }
+        
+        container.storyboardInitCompleted(MainViewController.self) { (r, c) in
+            c.viewModel = r.resolve(MainViewModeling.self)
+        }
+    }
+}
